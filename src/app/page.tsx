@@ -24,7 +24,7 @@ export default function pge({}) {
           <Grid size={{ xs: 0, lg: 3 }}></Grid>
           <Grid size={{ xs: 12, md: 6 }} sx={{ p: 2, mx: "auto" }}>
             {posts ? (
-              posts.map((post) => <PostCard key={post._id} postInfo={post} />)
+              posts.map((post) => <PostCard showAllComments={false} key={post._id} postInfo={post} />)
             ) : (
               <Loading />
             )}
