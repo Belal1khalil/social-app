@@ -167,7 +167,7 @@ export default function Navbar() {
               fontSize: { xs: "1rem", sm: "1.25rem" }, // Smaller on mobile
             }}
           >
-            <HomeIcon sx={{ mr: 1, fontSize: { xs: 24, sm: 28 } }} />
+            {/* <HomeIcon sx={{ mr: 1, fontSize: { xs: 24, sm: 28 } }} /> */}
             Social App
           </Typography>
 
@@ -176,7 +176,7 @@ export default function Navbar() {
             <Button
               component={Link}
               href="/"
-              startIcon={<HomeIcon />}
+             
               sx={{
                 color: "white",
                 textTransform: "none",
@@ -196,9 +196,8 @@ export default function Navbar() {
             </Button>
 
                <Button
-              component={Link}
-              href="/login"
-              startIcon={<LoginIcon />}
+               component={Link}
+                 href="/login"
               sx={{
                 color: "white",
                 textTransform: "none",
@@ -220,29 +219,7 @@ export default function Navbar() {
             </Button>
 
 
-             <Button
-              component={Link}
-              href="/signup"
-              startIcon={<LoginIcon />}
-              sx={{
-                color: "white",
-                textTransform: "none",
-                fontWeight: currentPath === "/signup" ? 700 : 500,
-                backgroundColor:
-                  currentPath === "/signup"
-                    ? "rgba(255,255,255,0.2)"
-                    : "transparent",
-                borderRadius: 2,
-                px: 2,
-                "&:hover": {
-                  backgroundColor: "rgba(255,255,255,0.1)",
-                  transform: "scale(1.05)",
-                  transition: "all 0.2s ease",
-                },
-              }}
-            >
-              Signup
-            </Button>
+          
           </Box>
 
           {/* Spacer */}

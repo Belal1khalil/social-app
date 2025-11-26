@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import Loading from "./loading";
 import CommentCard from "@/components/CommentCard/CommentCard";
+import PostForm from "@/components/PostForm/PostForm";
 
 export default function pge({}) {
   const { posts } = useAppSelector((store) => store.PostsReducer);
@@ -20,9 +21,11 @@ export default function pge({}) {
   return (
     <>
       <section>
+        
         <Grid container>
           <Grid size={{ xs: 0, lg: 3 }}></Grid>
           <Grid size={{ xs: 12, md: 6 }} sx={{ p: 2, mx: "auto" }}>
+            <PostForm/>
             {posts ? (
               posts.map((post) => <PostCard showAllComments={false} key={post._id} postInfo={post} />)
             ) : (

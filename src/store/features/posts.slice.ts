@@ -15,7 +15,7 @@ export const getPosts = createAsyncThunk(
 
     const options = {
       method: "GET",
-      url: "https://linked-posts.routemisr.com/posts?limit=50",
+      url: `https://linked-posts.routemisr.com/posts?limit=50`,
       headers: {
         token,
       },

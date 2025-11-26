@@ -214,7 +214,7 @@ export default function PostCard({
               <CommentCard commentInfo={comment} key={comment._id} />
             ))}
 
-          {!showAllComments && (
+          {!showAllComments && postInfo.comments.length>0 &&(
             <Button fullWidth variant="contained">
               <Link href={`/post/${postInfo._id}`}>show All comments</Link>
             </Button>
