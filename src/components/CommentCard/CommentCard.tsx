@@ -11,14 +11,41 @@ import {
 } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import palceholderImage from "../../assests/imgs/user.png";
+import { useAppDispatch, useAppSelector } from "@/store/user.hooks";
+import { toast } from "react-toastify";
+import { getPostDetails } from "@/store/features/posts.slice";
+import axios from "axios";
 
 export default function CommentCard({ commentInfo }: { commentInfo: Comment }) {
+  const { token } = useAppSelector((store) => store.userReducer);
+  
+
   function handleimagePath(path: string | undefined) {
     // always return a string to keep Avatar src happy
     if (!path || path.includes("undefined")) {
       return palceholderImage.src ?? "";
     } else {
       return path;
+    }
+  }
+
+  async function deleteComment(id: string) {
+    try {
+      const options = {
+        url: `https://linked-posts.routemisr.com/comments/${id}`,
+        method: "DELETE",
+        headers: {
+          token,
+        },
+      };
+      const { data } = await axios.request(options);
+      
+      if (data.message === "success") {
+        toast.success(" Comment deleted successfully");
+       
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 
@@ -71,9 +98,15 @@ export default function CommentCard({ commentInfo }: { commentInfo: Comment }) {
               </Typography>
             </Stack>
 
-            <IconButton size="small" aria-label="more">
-              <MoreVertIcon fontSize="small" />
-            </IconButton>
+            <Button
+              onClick={() => {
+                deleteComment(commentInfo._id);
+              }}
+              variant="outlined"
+              sx={{ color: "red" }}
+            >
+              Delete
+            </Button>
           </Stack>
 
           <Box

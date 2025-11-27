@@ -25,7 +25,7 @@ export default function Navbar() {
     React.useState<null | HTMLElement>(null);
 
   const currentPath = usePathname();
- const {token} =  useAppSelector((store)=>store.userReducer)
+  const { token } = useAppSelector((store) => store.userReducer);
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
@@ -67,13 +67,15 @@ export default function Navbar() {
         onClick={handleMenuClose}
         sx={{ "&:hover": { backgroundColor: "#e3f2fd" } }}
       >
-        <Link  href="/profile">profile</Link>
+        <Link href="/profile">profile</Link>
       </MenuItem>
       <MenuItem
         onClick={handleMenuClose}
         sx={{ "&:hover": { backgroundColor: "#e3f2fd" } }}
       >
-     <Link onClick={logout}  href="/login" style={{color:"red"}}>logut</Link>
+        <Link onClick={logout} href="/login" style={{ color: "red" }}>
+          logut
+        </Link>
       </MenuItem>
     </Menu>
   );
@@ -111,26 +113,7 @@ export default function Navbar() {
         </IconButton>
         <p>Home</p>
       </MenuItem>
-      <MenuItem
-        component={Link}
-        href="/login"
-        onClick={handleMobileMenuClose}
-        sx={{
-          "&:hover": { backgroundColor: "#e3f2fd" },
-          display: "flex",
-          alignItems: "center",
-        }}
-      >
-        <IconButton size="large" color="inherit">
-          <LoginIcon />
-        </IconButton>
-        <p>Login</p>
-      </MenuItem>
 
-
-
-
-      
       <MenuItem
         onClick={handleProfileMenuOpen}
         sx={{ "&:hover": { backgroundColor: "#e3f2fd" } }}
@@ -139,6 +122,25 @@ export default function Navbar() {
           <AccountCircle />
         </IconButton>
         <p>Profile</p>
+      </MenuItem>
+      <MenuItem
+        component={Link}
+        href="/login"
+        onClick={() => {
+          handleMobileMenuClose;
+          logout;
+        }}
+        sx={{
+          "&:hover": { backgroundColor: "#e3f2fd" },
+          display: "flex",
+          alignItems: "center",
+          color: "red",
+        }}
+      >
+        <IconButton size="large" color="inherit">
+          <LoginIcon />
+        </IconButton>
+        <p>Logout</p>
       </MenuItem>
     </Menu>
   );
@@ -177,7 +179,6 @@ export default function Navbar() {
             <Button
               component={Link}
               href="/"
-             
               sx={{
                 color: "white",
                 textTransform: "none",
@@ -196,31 +197,30 @@ export default function Navbar() {
               Home
             </Button>
 
-               <Button
-               component={Link}
-                 href="/login"
-              sx={{
-                color: "white",
-                textTransform: "none",
-                fontWeight: currentPath === "/login" ? 700 : 500,
-                backgroundColor:
-                  currentPath === "/login"
-                    ? "rgba(255,255,255,0.2)"
-                    : "transparent",
-                borderRadius: 2,
-                px: 2,
-                "&:hover": {
-                  backgroundColor: "rgba(255,255,255,0.1)",
-                  transform: "scale(1.05)",
-                  transition: "all 0.2s ease",
-                },
-              }}
-            >
-              Login
-            </Button>
-
-
-          
+            {!token && (
+              <Button
+                component={Link}
+                href="/login"
+                sx={{
+                  color: "white",
+                  textTransform: "none",
+                  fontWeight: currentPath === "/login" ? 700 : 500,
+                  backgroundColor:
+                    currentPath === "/login"
+                      ? "rgba(255,255,255,0.2)"
+                      : "transparent",
+                  borderRadius: 2,
+                  px: 2,
+                  "&:hover": {
+                    backgroundColor: "rgba(255,255,255,0.1)",
+                    transform: "scale(1.05)",
+                    transition: "all 0.2s ease",
+                  },
+                }}
+              >
+                Login
+              </Button>
+            )}
           </Box>
 
           {/* Spacer */}
