@@ -3,11 +3,14 @@ import PostCard from "@/components/PostCard/PostCard";
 import { getPosts } from "@/store/features/posts.slice";
 import { useAppDispatch, useAppSelector } from "@/store/user.hooks";
 import Grid from "@mui/material/Grid";
-import Link from "next/link";
+
 import { useEffect } from "react";
 import Loading from "./loading";
-import CommentCard from "@/components/CommentCard/CommentCard";
+
 import PostForm from "@/components/PostForm/PostForm";
+import ProtectedRoute from "./ProtectedRoute/ProtectedRoute";
+
+
 
 export default function pge({}) {
   const { posts } = useAppSelector((store) => store.PostsReducer);
@@ -20,7 +23,9 @@ export default function pge({}) {
 
   return (
     <>
-      <section>
+  
+   <ProtectedRoute>
+        <section>
         
         <Grid container>
           <Grid size={{ xs: 0, lg: 3 }}></Grid>
@@ -36,6 +41,8 @@ export default function pge({}) {
           <Grid size={{ md: 3 }}></Grid>
         </Grid>
       </section>
+   </ProtectedRoute>
+    
     </>
   );
 }

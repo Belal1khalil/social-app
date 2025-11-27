@@ -1,6 +1,7 @@
 export type posts = {
   posts: null | Post[];
   postdetails: null | Post;
+  userposts : null | Post[],
 };
 
 export interface PaginationInfo {

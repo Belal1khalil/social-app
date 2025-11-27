@@ -5,6 +5,7 @@ import axios from "axios";
 const initialState: posts = {
   posts: null,
   postdetails: null,
+  userposts: null,
 };
 
 export const getPosts = createAsyncThunk(
@@ -43,6 +44,24 @@ export const getPostDetails = createAsyncThunk(
   }
 );
 
+export const getuserposts = createAsyncThunk(
+  "posts/getuserposts",
+  async (userId: string, { getState }) => {
+    const state: any = getState();
+    const token = state.userReducer.token;
+
+    const options = {
+      method: "GET",
+      url: `https://linked-posts.routemisr.com/users/${userId}/posts?`,
+      headers: {
+        token,
+      },
+    };
+    const { data } = await axios.request(options);
+    return data.posts;
+  }
+);
+
 const postsSlice = createSlice({
   name: "posts",
   initialState,
@@ -61,6 +80,12 @@ const postsSlice = createSlice({
     builder.addCase(getPostDetails.rejected, (state, action) => {
       console.log("false | Posts");
       console.log({ state, action });
+    });
+    builder.addCase(getuserposts.fulfilled, (state, action) => {
+      state.userposts = action.payload;
+    });
+    builder.addCase(getuserposts.rejected, (state, action) => {
+      console.log(state, action);
     });
   },
 });

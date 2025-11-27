@@ -17,6 +17,7 @@ import LoginIcon from "@mui/icons-material/Login";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/store/user.hooks";
+import { logout } from "@/store/features/user.slice";
 
 export default function Navbar() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -66,13 +67,13 @@ export default function Navbar() {
         onClick={handleMenuClose}
         sx={{ "&:hover": { backgroundColor: "#e3f2fd" } }}
       >
-        Profile
+        <Link  href="/profile">profile</Link>
       </MenuItem>
       <MenuItem
         onClick={handleMenuClose}
         sx={{ "&:hover": { backgroundColor: "#e3f2fd" } }}
       >
-        My account
+     <Link onClick={logout}  href="/login" style={{color:"red"}}>logut</Link>
       </MenuItem>
     </Menu>
   );
