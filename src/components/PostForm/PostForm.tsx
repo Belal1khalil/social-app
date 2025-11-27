@@ -44,7 +44,9 @@ export default function PostForm() {
     const { data } = await axios.request(options);
     if (data.message === "success") {
       toast.success("Post Shared Successfully");
-       contentPostRef.current.value = "";
+      if (contentPostRef.current) {
+        contentPostRef.current.value = "";
+      }
     }
   }
 
